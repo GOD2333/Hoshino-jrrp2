@@ -91,6 +91,13 @@ def same_month(dateString):
     return d1.month == d2.month \
               and d1.year == d2.year
 
+sv_help = '''
+[.jrrp] [今日人品] [今日运势]   获取你的今日人品
+[本周人品] [本周运势] [周运势]  获取你的本周平均人品
+[本月人品] [本月运势] [月运势]  获取你的本月平均人品
+[总人品] [平均人品] [平均运势]  获取你的历史平均人品
+'''.strip()
+
 sv = Service(
     name = '今日人品',  #功能名
     use_priv = priv.NORMAL, #使用权限   
