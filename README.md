@@ -27,3 +27,7 @@
 ## 数据库
 
 本插件使用sqlite作为数据库来保存历史查询数据，保存位置为`/HoshinoBot/data/jrrp2/jrrpdata.db`
+
+## 参考致谢
+
+| [nonebot_plugin_jrrp2](https://github.com/Rene8028/nonebot_plugin_jrrp2) | [@Rene8028](https://github.com/Rene8028) |
