@@ -110,18 +110,18 @@ sv = Service(
 
 
 @sv.on_fullmatch(('.jrrp','今日人品','今日运势'))
-async def jrrp_handle(bot: Bot, event: CQEvent):
+async def jrrp_handle(bot, event: CQEvent):
     rnd = random.Random()
-    rnd.seed(int(date.today().strftime("%y%m%d")) + int(event.user_id()))
+    rnd.seed(int(date.today().strftime("%y%m%d")) + int(event.user_id))
     lucknum = rnd.randint(1,100)
-    if not select_tb_today(event.user_id(),date.today().strftime("%y%m%d")):
-        insert_tb(event.user_id(),lucknum,date.today().strftime("%y%m%d"))
+    if not select_tb_today(event.user_id,date.today().strftime("%y%m%d")):
+        insert_tb(event.user_id,lucknum,date.today().strftime("%y%m%d"))
     await bot.send(event, f"您今日的幸运指数是{lucknum}，为{luck_simple(lucknum)[0]}，{luck_simple(lucknum)[1]}", at_sender=True)
 
 
 @sv.on_fullmatch(('总人品','平均人品','平均运势'))
-async def alljrrp_handle(bot: Bot, event: CQEvent):
-    alldata = select_tb_all(event.user_id())
+async def alljrrp_handle(bot, event: CQEvent):
+    alldata = select_tb_all(event.user_id)
     if alldata == None:
         await bot.send(event, "您还没有过历史人品记录！", at_sender=True)
     times = len(alldata)
@@ -132,8 +132,8 @@ async def alljrrp_handle(bot: Bot, event: CQEvent):
 
 
 @sv.on_fullmatch(('本月人品','本月运势','月运势'))
-async def monthjrrp_handle(bot: Bot, event: CQEvent):
-    alldata = select_tb_all(event.user_id())
+async def monthjrrp_handle(bot, event: CQEvent):
+    alldata = select_tb_all(event.user_id)
     times = 0
     allnum = 0
     for i in alldata:
@@ -146,10 +146,10 @@ async def monthjrrp_handle(bot: Bot, event: CQEvent):
 
 
 @sv.on_fullmatch(('本周人品','本周运势','周运势'))
-async def weekjrrp_handle(bot: Bot, event: CQEvent):
-    alldata = select_tb_all(event.user_id())
+async def weekjrrp_handle(bot, event: CQEvent):
+    alldata = select_tb_all(event.user_id)
     if alldata == None:
-        await jrrp.finish(Message(f'[CQ:at,qq={event.user_id()}]您还没有过历史人品记录！'))
+        await jrrp.finish(Message(f'[CQ:at,qq={event.user_id}]您还没有过历史人品记录！'))
     times = 0
     allnum = 0
     for i in alldata:
